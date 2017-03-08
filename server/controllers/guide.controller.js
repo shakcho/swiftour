@@ -34,7 +34,8 @@ function create(req, res, next) {
     gender: req.body.gender,
     email: req.body.email,
     mobileNumber: req.body.mobileNumber,
-    licence: req.body.licence
+    licence: req.body.licence,
+    address :req.body.address
   });
 
   guide.save()
@@ -50,13 +51,18 @@ function create(req, res, next) {
  */
 function update(req, res, next) {
   const guide = req.guide;
-  guide.username = req.body.username,
-  guide.firstName = req.body.firstName,
-  guide.lastName = req.body.lastName,
-  guide.gender = req.body.gender,
-  guide.email = req.body.email,
-  guide.mobileNumber = req.body.mobileNumber,
-  guide.licence = req.body.licence
+  guide.username = req.body.username;
+  guide.firstName = req.body.firstName;
+  guide.lastName = req.body.lastName;
+  guide.gender = req.body.gender;
+  guide.email = req.body.email;
+  guide.mobileNumber = req.body.mobileNumber;
+  guide.licence = req.body.licence;
+  guide.address.lines = req.body.address.lines;
+  guide.address.city = req.body.address.city;
+  guide.address.state = req.body.address.state;
+  guide.address.zip = req.body.address.zip;
+  guide.address.country = req.body.address.country;
   guide.save()
     .then(savedGuide => res.json(savedGuide))
     .catch(e => next(e));
@@ -87,4 +93,3 @@ function remove(req, res, next) {
 }
 
 export default { load, get, create, update, list, remove };
-// export default { get, create, update, list, remove };

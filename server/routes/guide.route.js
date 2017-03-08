@@ -23,6 +23,6 @@ router.route('/:guideId')
   .delete(guideCtrl.remove);
 
 /** Load user when API with userId route parameter is hit */
-// router.param('guideId', guideCtrl.load);
+ router.param('guideId', guideCtrl.load);
 
 export default router;

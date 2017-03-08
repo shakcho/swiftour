@@ -10,11 +10,11 @@ const GuideSchema = new mongoose.Schema({
   username: {
     type: String,
     required: false,
-    unique:true
+    unique: true
   },
   firstName:{
     type: String,
-    required:true
+    required: true
   },
   lastName:{
     type: String,
@@ -33,18 +33,18 @@ const GuideSchema = new mongoose.Schema({
     city: String,
     state: String,
     zip: String,
-    Country: String 
+    Country: String
   },
   mobileNumber: {
     type: String,
     required: true,
-    unique:true,
+    unique: true,
     match: [/^[1-9][0-9]{9}$/, 'The value of path {PATH} ({VALUE}) is not a valid mobile number.']
   },
   licence:{
     type:String,
-    required:true,
-    unique:true
+    required: true,
+    unique: true
   },
   createdAt: {
     type: Date,
@@ -79,6 +79,7 @@ GuideSchema.statics = {
       .exec()
       .then((guide) => {
         if (guide) {
+          console.log(guide);
           return guide;
         }
         const err = new APIError('No such user exists!', httpStatus.NOT_FOUND);
