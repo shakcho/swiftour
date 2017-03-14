@@ -5,6 +5,17 @@ export default {
   createUser: {
     body: {
       username: Joi.string().required(),
+      firstName: Joi.string().required(),
+      lastName: Joi.string().required(),
+      gender: Joi.string(),
+      email: Joi.string().email().required(),
+      address: Joi.object().keys({
+        lines: Joi.array().items(Joi.string()),
+        city: Joi.string(),
+        state: Joi.string(),
+        zip: Joi.string(),
+        country: Joi.string()
+      }),
       mobileNumber: Joi.string().regex(/^[1-9][0-9]{9}$/).required()
     }
   },
@@ -13,6 +24,17 @@ export default {
   updateUser: {
     body: {
       username: Joi.string().required(),
+      firstName: Joi.string().required(),
+      lastName: Joi.string().required(),
+      gender: Joi.string(),
+      email: Joi.string().email().required(),
+      address: Joi.object().keys({
+        lines: Joi.array().items(Joi.string()),
+        city: Joi.string(),
+        state: Joi.string(),
+        zip: Joi.string(),
+        country: Joi.string()
+      }),
       mobileNumber: Joi.string().regex(/^[1-9][0-9]{9}$/).required()
     },
     params: {
@@ -33,9 +55,11 @@ export default {
         city: Joi.string(),
         state: Joi.string(),
         zip: Joi.string(),
-        country: Joi.string() 
+        country: Joi.string()
       }),
       mobileNumber: Joi.string().regex(/^[1-9][0-9]{9}$/).required(),
+      skills: Joi.array().items(Joi.string()),
+      languagesKnown: Joi.array().items(Joi.string()),
       licence: Joi.string().required(),
 
     }
@@ -54,9 +78,11 @@ export default {
         city: Joi.string(),
         state: Joi.string(),
         zip: Joi.string(),
-        country: Joi.string() 
+        country: Joi.string()
       }),
       mobileNumber: Joi.string().regex(/^[1-9][0-9]{9}$/).required(),
+      skills: Joi.array().items(Joi.string()),
+      languagesKnown: Joi.array().items(Joi.string()),
       licence: Joi.string().required()
     },
     params: {

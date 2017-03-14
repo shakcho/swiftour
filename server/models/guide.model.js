@@ -46,6 +46,12 @@ const GuideSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
+  skills: {
+    type: [String]
+  },
+  languagesKnown: {
+    type: [String]
+  },
   createdAt: {
     type: Date,
     default: Date.now

@@ -35,7 +35,9 @@ function create(req, res, next) {
     email: req.body.email,
     mobileNumber: req.body.mobileNumber,
     licence: req.body.licence,
-    address :req.body.address
+    address: req.body.address,
+    skills: req.body.skills,
+    langaugesKnown: req.body.languagesKnown
   });
 
   guide.save()
@@ -63,6 +65,8 @@ function update(req, res, next) {
   guide.address.state = req.body.address.state;
   guide.address.zip = req.body.address.zip;
   guide.address.country = req.body.address.country;
+  guide.skills = req.body.skills;
+  guide.languagesKnown = req.body.languagesKnown;
   guide.save()
     .then(savedGuide => res.json(savedGuide))
     .catch(e => next(e));
