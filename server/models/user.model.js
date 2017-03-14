@@ -19,15 +19,15 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  gender:{
+  gender: {
     type: String,
   },
-  email:{
+  email: {
     type: String,
     required: true,
     unique: true
   },
-  address:{
+  address: {
     lines: [String],
     city: String,
     state: String,

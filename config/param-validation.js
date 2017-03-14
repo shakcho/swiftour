@@ -42,9 +42,9 @@ export default {
     }
   },
 
-  //POST /api/guides
-  createGuide:{
-    body:{
+  // POST /api/guides
+  createGuide: {
+    body: {
       username: Joi.string().required(),
       firstName: Joi.string().required(),
       lastName: Joi.string().required(),
@@ -66,8 +66,8 @@ export default {
   },
 
   // UPDATE /api/guides/:guideID
-  updateGuide:{
-    body:{
+  updateGuide: {
+    body: {
       username: Joi.string().required(),
       firstName: Joi.string().required(),
       lastName: Joi.string().required(),
