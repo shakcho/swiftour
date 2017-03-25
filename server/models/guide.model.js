@@ -104,8 +104,10 @@ GuideSchema.method({
       //     hashpwd = hash; 
       // });
     }
-    return hashpwd;
-  }
+  },
+  authenticate: function(plainTextPword) {
+    return bcrypt.compareSync(plainTextPword, this.password); //will return true if the user's hashed plain text password matches the hashed plain text password in DB
+  },
 })
 
 /**

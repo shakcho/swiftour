@@ -98,7 +98,8 @@ export default {
   login: {
     body: {
       username: Joi.string().required(),
-      password: Joi.string().required()
+      password: Joi.string().required(),
+      role: Joi.string().required()
     }
   }
 };

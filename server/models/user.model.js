@@ -80,6 +80,9 @@ UserSchema.method({
       var salt = bcrypt.genSaltSync(10);
       return bcrypt.hashSync(plainTextPword, salt);
     }
+  },
+  authenticate: function(plainTextPword) {
+    return bcrypt.compareSync(plainTextPword, this.password); //will return true if the user's hashed plain text password matches the hashed plain text password in DB
   }
   // authenticate: function(plainTextPword) {
   //   bcrypt.compare(plainTextPword, this.password, function(err,res){
