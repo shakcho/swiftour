@@ -29,6 +29,7 @@ function get(req, res) {
 function create(req, res, next) {
   const guide = new Guide({
     username: req.body.username,
+    password: req.body.password,
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     gender: req.body.gender,
@@ -37,6 +38,7 @@ function create(req, res, next) {
     licence: req.body.licence,
     address: req.body.address,
     skills: req.body.skills,
+    role: 'Guide',
     langaugesKnown: req.body.languagesKnown
   });
 
@@ -54,6 +56,7 @@ function create(req, res, next) {
 function update(req, res, next) {
   const guide = req.guide;
   guide.username = req.body.username;
+  guide.password = req.body.password;
   guide.firstName = req.body.firstName;
   guide.lastName = req.body.lastName;
   guide.gender = req.body.gender;
@@ -67,6 +70,7 @@ function update(req, res, next) {
   guide.address.country = req.body.address.country;
   guide.skills = req.body.skills;
   guide.languagesKnown = req.body.languagesKnown;
+  guide.role = 'Guide';
   guide.save()
     .then(savedGuide => res.json(savedGuide))
     .catch(e => next(e));

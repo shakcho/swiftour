@@ -1,5 +1,6 @@
 import Promise from 'bluebird';
 import mongoose from 'mongoose';
+import bcrypt from 'bcrypt';
 import httpStatus from 'http-status';
 import APIError from '../helpers/APIError';
 
@@ -11,6 +12,10 @@ const GuideSchema = new mongoose.Schema({
     type: String,
     required: false,
     unique: true
+  },
+  password: {
+    type: String,
+    required: true
   },
   firstName: {
     type: String,
@@ -52,6 +57,10 @@ const GuideSchema = new mongoose.Schema({
   languagesKnown: {
     type: [String]
   },
+  role: {
+    type: String,
+    required: true
+  },
   createdAt: {
     type: Date,
     default: Date.now
@@ -64,12 +73,40 @@ const GuideSchema = new mongoose.Schema({
  * - validations
  * - virtuals
  */
+ GuideSchema.pre('save', function(next) {
+  if (!this.isModified('password')) {
+    return next();
+  }
+  this.password = this.encryptPassword(this.password);
+  next();
+})
 
 /**
  * Methods
  */
 GuideSchema.method({
-});
+  // hash the passwords
+  encryptPassword: function(plainTextPword) {
+    let hashpwd;
+    if (!plainTextPword) {
+      return ''
+    } else {
+      // const saltRounds = 10;
+      var salt = bcrypt.genSaltSync(10);
+      return bcrypt.hashSync(plainTextPword, salt);
+      // bcrypt.hash(plainTextPword, saltRounds, function(err, hash) {
+      //     // Return the hash
+      //     if(err){
+      //       console.log("Encrypt Error");
+      //       console.log(err);
+      //       // next(err);
+      //     }
+      //     hashpwd = hash; 
+      // });
+    }
+    return hashpwd;
+  }
+})
 
 /**
  * Statics

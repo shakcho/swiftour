@@ -1,5 +1,6 @@
 import Promise from 'bluebird';
 import mongoose from 'mongoose';
+import bcrypt from 'bcrypt';
 import httpStatus from 'http-status';
 import APIError from '../helpers/APIError';
 
@@ -8,6 +9,10 @@ import APIError from '../helpers/APIError';
  */
 const UserSchema = new mongoose.Schema({
   username: {
+    type: String,
+    required: true
+  },
+  password: {
     type: String,
     required: true
   },
@@ -39,6 +44,10 @@ const UserSchema = new mongoose.Schema({
     required: true,
     match: [/^[1-9][0-9]{9}$/, 'The value of path {PATH} ({VALUE}) is not a valid mobile number.']
   },
+  role: {
+    type: String,
+    required: true
+  },
   createdAt: {
     type: Date,
     default: Date.now
@@ -51,12 +60,38 @@ const UserSchema = new mongoose.Schema({
  * - validations
  * - virtuals
  */
+UserSchema.pre('save', function(next) {
+  if (!this.isModified('password')) {
+    return next();
+  }
+  this.password = this.encryptPassword(this.password);
+  next();
+})
 
 /**
  * Methods
  */
 UserSchema.method({
-});
+  // hash the passwords
+  encryptPassword: function(plainTextPword) {
+    if (!plainTextPword) {
+      return ''
+    } else {
+      var salt = bcrypt.genSaltSync(10);
+      return bcrypt.hashSync(plainTextPword, salt);
+    }
+  }
+  // authenticate: function(plainTextPword) {
+  //   bcrypt.compare(plainTextPword, this.password, function(err,res){
+  //     if(err){
+  //       console.log("Authenticate Error");
+  //       console.log(err);
+  //       next(err);
+  //     }
+  //     return res;
+  //   }); 
+  // }
+})
 
 /**
  * Statics

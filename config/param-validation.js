@@ -5,6 +5,7 @@ export default {
   createUser: {
     body: {
       username: Joi.string().required(),
+      password: Joi.string().required(),
       firstName: Joi.string().required(),
       lastName: Joi.string().required(),
       gender: Joi.string(),
@@ -24,6 +25,7 @@ export default {
   updateUser: {
     body: {
       username: Joi.string().required(),
+      password: Joi.string().required(),
       firstName: Joi.string().required(),
       lastName: Joi.string().required(),
       gender: Joi.string(),
@@ -46,6 +48,7 @@ export default {
   createGuide: {
     body: {
       username: Joi.string().required(),
+      password: Joi.string().required(),
       firstName: Joi.string().required(),
       lastName: Joi.string().required(),
       gender: Joi.string(),
@@ -69,6 +72,7 @@ export default {
   updateGuide: {
     body: {
       username: Joi.string().required(),
+      password: Joi.string().required(),
       firstName: Joi.string().required(),
       lastName: Joi.string().required(),
       gender: Joi.string(),
