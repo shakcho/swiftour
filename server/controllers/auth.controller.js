@@ -28,11 +28,12 @@ function login(req, res, next) {
   if (role === 'User'){
     User.findOne({username: username})
     .then(function(user){
+    console.log(user);
     if(!user){
-      res.status(401).send("No user with the given username");
+      res.status(401).send({data: "No user with the given username"});
     }else{
       if(!user.authenticate(password)){
-        res.status(401).send("username and password incorrect");
+        res.status(401).send({data:"username or password is incorrect"});
       }else{
         const token = createToken(user);
           return res.status(200).send({
@@ -51,10 +52,10 @@ function login(req, res, next) {
     Guide.findOne({username: username})
     .then(function(user){
       if(!user){
-        res.status(401).send("No user with the given username");
+        res.status(401).send({data: "No user with the given username"});
       }else{
         if(!user.authenticate(password)){
-          res.status(401).send("username and password incorrect");
+          res.status(401).send({data:"username or password is incorrect"});
         }else{
           console.log("Found User\n");
           console.log(user);
@@ -72,8 +73,8 @@ function login(req, res, next) {
       next(err);
     });
   }
-  const err = new APIError('Authentication error', httpStatus.UNAUTHORIZED, true);
-  return next(err);
+  // const err = new APIError('Authentication error', httpStatus.UNAUTHORIZED, true);
+  // return next(err);
 }
 
 /**
