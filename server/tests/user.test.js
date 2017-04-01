@@ -20,7 +20,20 @@ after((done) => {
 describe('## User APIs', () => {
   let user = {
     username: 'KK123',
-    mobileNumber: '1234567890'
+    firstName: 'Sakti',
+    lastName: 'Chourasia',
+    password: 'golu1234',
+    gender: 'Male',
+    email: 'schourasia@gmail.com',
+    role: 'User',
+    mobileNumber: '1234567890',
+    address: {
+      lines: ["Line 1"],
+      city: 'Kolkata',
+      state: 'West Bengal',
+      zip: '700152',
+      country: 'India'
+    }
   };
 
   describe('# POST /api/users', () => {
