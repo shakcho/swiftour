@@ -3,4 +3,4 @@
 A Guide Booking appliction.
 _____________________________
 
-A special Thnaks to  [Kunal Kapadi](https://github.com/KunalKapadia/express-mongoose-es6-rest-api)
+A special Thnaks to  [Kunal Kapadia](https://github.com/KunalKapadia/express-mongoose-es6-rest-api)
